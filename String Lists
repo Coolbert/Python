@@ -1,0 +1,6 @@
+Ask the user for a string and print out whether this string is a palindrome or not. 
+
+word = input ("Give me the word: ")
+word2 = word[::-1]
+if word == word2:
+    print (word.title() + " is palindrome.")
