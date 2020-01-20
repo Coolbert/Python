@@ -1,0 +1,44 @@
+Create a program that will play the “cows and bulls” game with the user. The game works like this:
+
+Randomly generate a 4-digit number. Ask the user to guess a 4-digit number. 
+For every digit that the user guessed correctly in the correct place, they have a “cow”. 
+For every digit the user guessed correctly in the wrong place is a “bull.” 
+Every time the user makes a guess, tell them how many “cows” and “bulls” they have. 
+Once the user guesses the correct number, the game is over. 
+Keep track of the number of guesses the user makes throughout teh game and tell the user at the end.
+
+import random
+
+def cow_bull_game (number, guess):
+    bull=0
+    cow=0
+
+    for c in range(len(number)):
+        if number[c] == guess[c]:
+            cow += 1
+            bull -= 1
+    for d in number:
+        if d in number and d in guess:
+            bull += 1
+    return [cow, bull]
+
+if __name__=="__main__":
+    counter = 0
+    rolled = []
+    for i in range(4):
+        a = str(random.randint(0, 9))
+        rolled.append(a)
+
+    decision = True
+    while decision != 'exit':
+        decision = input("Do you wanna play? If not type exit, if yes press any key! ")
+        if decision == "exit":
+            break
+        counter += 1
+        b = str(input("Guess the number: "))
+        thought = list(b)
+        print(thought)
+
+        print("You have got " + str(cow_bull_game(rolled, thought)[0]) + " cows and " + str(cow_bull_game(rolled, thought)[1]) + " bulls.")
+        if cow_bull_game(rolled, thought)[0] == 4:
+            print("You got this accurate! And you accomplished it in " + str(counter) + " guesses.")
